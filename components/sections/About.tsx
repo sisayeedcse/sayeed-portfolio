@@ -61,18 +61,15 @@ export default function About() {
               
               {/* Image Container */}
               <div className="relative glass-card rounded-2xl overflow-hidden p-2">
-                <div className="relative w-full h-full bg-dark-600 rounded-xl flex items-center justify-center">
-                  {/* Placeholder - Replace with actual image */}
-                  <div className="w-full h-full bg-gradient-to-br from-primary-600/20 to-purple-600/20 flex items-center justify-center">
-                    <span className="text-6xl">👨‍💻</span>
-                  </div>
-                  {/* Uncomment to use actual image */}
-                  {/* <Image
-                    src="/path-to-your-image.jpg"
+                <div className="relative w-full h-full bg-dark-600 rounded-xl overflow-hidden">
+                  <Image
+                    src="https://res.cloudinary.com/dknflcbt1/image/upload/v1772096492/LinkedIn_DP_kuhzbk.png"
                     alt="Sayeed Ibne Saif"
-                    fill
-                    className="object-cover"
-                  /> */}
+                    width={500}
+                    height={500}
+                    className="object-cover w-full h-full"
+                    priority
+                  />
                 </div>
               </div>
 
