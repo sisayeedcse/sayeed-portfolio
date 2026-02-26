@@ -54,6 +54,10 @@ Replace with your actual social media URLs:
   name: "GitHub",
   link: "https://github.com/YOUR_USERNAME",
 },
+{
+  name: "Instagram",
+  link: "https://www.instagram.com/YOUR_USERNAME",
+},
 ```
 
 ### 3. Resume/CV

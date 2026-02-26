@@ -32,7 +32,7 @@ const projects = [
       "Innovative web application designed to streamline domestic service hiring with features including profile verification, rating systems, booking management, and secure payment processing.",
     technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "MongoDB"],
     image: "/projects/maidmatch.jpg",
-    githubLink: "https://github.com/username/maidmatch",
+    githubLink: "https://github.com/sisayeedcse/MaidMatch-App",
     category: "Web App",
     featured: true,
     stats: {
@@ -252,7 +252,7 @@ export default function Projects() {
           <p className="text-gray-400 text-lg">
             Want to see more? Check out my{" "}
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/sisayeedcse"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary-400 hover:text-primary-300 font-semibold"

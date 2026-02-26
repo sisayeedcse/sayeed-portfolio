@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { FiMail, FiMapPin, FiLinkedin, FiGithub, FiSend } from "react-icons/fi";
+import { FiMail, FiMapPin, FiLinkedin, FiGithub, FiSend, FiInstagram } from "react-icons/fi";
 import emailjs from "@emailjs/browser";
 
 const contactInfo = [
@@ -190,7 +190,7 @@ export default function Contact() {
                   Response Time:
                 </span>{" "}
                 I typically respond within 24 hours. For urgent inquiries, feel
-                free to reach out via LinkedIn.
+                free to reach out via LinkedIn or Instagram.
               </p>
             </motion.div>
           </motion.div>

@@ -8,37 +8,44 @@ import {
   FiFacebook,
   FiTwitter,
   FiHeart,
+  FiInstagram,
 } from "react-icons/fi";
 
 const socialLinks = [
   {
     name: "GitHub",
     icon: FiGithub,
-    link: "https://github.com/yourusername",
+    link: "https://github.com/sisayeedcse",
     color: "hover:text-gray-400",
   },
   {
     name: "LinkedIn",
     icon: FiLinkedin,
-    link: "https://www.linkedin.com/in/yourusername",
+    link: "https://www.linkedin.com/in/sisayeedofficial/",
     color: "hover:text-primary-400",
   },
   {
     name: "Email",
     icon: FiMail,
-    link: "mailto:sayeed@example.com",
+    link: "mailto:tech.sisayeed@gmail.com",
     color: "hover:text-purple-400",
   },
   {
     name: "Facebook",
     icon: FiFacebook,
-    link: "https://www.facebook.com/yourusername",
+    link: "https://www.facebook.com/S.I.Sayeed.official/",
     color: "hover:text-blue-400",
+  },
+  {
+    name: "Instagram",
+    icon: FiInstagram,
+    link: "https://www.instagram.com/s.i.s_sayeed/",
+    color: "hover:text-pink-400",
   },
   {
     name: "Twitter",
     icon: FiTwitter,
-    link: "https://twitter.com/yourusername",
+    link: "https://x.com/SISayeed31",
     color: "hover:text-sky-400",
   },
 ];
@@ -148,10 +155,10 @@ export default function Footer() {
                 transition={{ duration: 0.3, delay: 0.1 }}
               >
                 <a
-                  href="mailto:sayeed@example.com"
+                  href="mailto:tech.sisayeed@gmail.com"
                   className="hover:text-primary-400 transition-colors duration-300"
                 >
-                  sayeed@example.com
+                  tech.sisayeed@gmail.com
                 </a>
               </motion.li>
               <motion.li
@@ -178,9 +185,9 @@ export default function Footer() {
           </p>
 
           <p className="text-gray-400 text-sm flex items-center space-x-2">
-            <span>Built with</span>
+            <span>Built with experience and lots of</span>
             <FiHeart className="text-red-500 animate-pulse" />
-            <span>using Next.js & Tailwind CSS</span>
+            <span>love</span>
           </p>
         </motion.div>
       </div>

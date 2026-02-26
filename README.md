@@ -210,9 +210,12 @@ If you like this project, please give it a ⭐ on GitHub!
 **Sayeed Ibne Saif**
 
 - Location: Chattogram, Bangladesh
-- Email: sayeed@example.com
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourusername)
+- Email: tech.sisayeed@gmail.com
+- LinkedIn: [linkedin.com/in/sisayeedofficial](https://www.linkedin.com/in/sisayeedofficial/)
 - GitHub: [@sisayeedcse](https://github.com/sisayeedcse)
+- Instagram: [@s.i.s_sayeed](https://www.instagram.com/s.i.s_sayeed/)
+- Facebook: [S.I.Sayeed.official](https://www.facebook.com/S.I.Sayeed.official/)
+- X/Twitter: [@SISayeed31](https://x.com/SISayeed31)
 
 ---
 
