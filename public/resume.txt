@@ -1,0 +1,68 @@
+Sayeed Ibne Saif
+
+Resume/CV
+
+-----
+
+Location: Chattogram, Bangladesh
+Email: sayeed@example.com
+LinkedIn: linkedin.com/in/yourusername
+GitHub: github.com/yourusername
+
+Professional Summary
+--------------------
+CSE undergraduate with 4+ years of experience in software development and digital strategy. Specializing in high-performance WordPress development, eCommerce solutions, and comprehensive digital marketing. Proven track record of delivering 10+ international projects with 100% client satisfaction.
+
+Education
+---------
+Bachelor of Science in Computer Science & Engineering
+Premier University, Chattogram
+7th Semester | Expected Graduation: 2025
+
+Higher Secondary Certificate (HSC)
+GPA: 5.00
+
+Experience
+----------
+eCommerce Manager & Developer | Glowbee Skincare | 2022 - Present
+- Developed and manage high-performance eCommerce platform
+- Implemented advanced SEO strategies, improving organic traffic by 200%
+- Achieved 95+ PageSpeed score through performance optimization
+- Managed Google Ads & Facebook Ads with 5x ROI
+
+Freelance WordPress Developer | International Clients | 2020 - Present
+- Delivered 10+ international eCommerce websites
+- Integrated multiple payment gateways (Stripe, PayPal)
+- Provided comprehensive branding and marketing solutions
+- Maintained 100% client satisfaction rate
+
+Leadership
+----------
+General Secretary | IEEE Computer Society | 2024 - Present
+- Organized 15+ technical workshops and seminars
+- Led research paper publication initiatives
+- Managed executive committee of 20+ members
+
+Assistant General Secretary | Premier University Computer Club | 2023 - 2024
+- Organized inter-university programming contests
+- Mentored 100+ students in competitive programming
+
+Skills
+------
+Programming: C, C++, Java, Python, PHP, JavaScript, TypeScript
+Web Development: React, Next.js, WordPress, HTML5, CSS3, Tailwind CSS
+Databases: MySQL, MongoDB
+Marketing: Google Analytics, SEO, Google Ads, Facebook Ads
+Tools: Git, GitHub, VS Code, Power BI, Jupyter, Figma
+
+Projects
+--------
+- Glowbee Skincare eCommerce Platform
+- MaidMatch - Domestic Service Platform
+- 10+ International eCommerce Solutions
+- SEO Optimization Case Studies
+- Brand Identity & Marketing Campaigns
+
+-----
+
+Note: This is a placeholder resume. Please replace public/resume.pdf with your actual resume PDF.
