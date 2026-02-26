@@ -13,7 +13,7 @@ A modern, sleek, and fully responsive personal portfolio website built with Next
 - 🌙 **Dark/Light Mode**: Toggle between themes with smooth transitions
 - 🎯 **SEO Optimized**: Meta tags, Open Graph, and semantic HTML
 - ♿ **Accessible**: ARIA support and keyboard navigation
-- 📧 **Contact Form**: Integrated with EmailJS for seamless communication
+- 📧 **Contact Form**: Integrated with EmailJS for seamless communication 
 - 🎨 **Custom Cursor**: Interactive custom cursor effect (desktop)
 - 📊 **Animated Stats**: Counting animations and progress bars
 - 🔄 **Scroll Animations**: Smooth reveal animations on scroll
@@ -90,15 +90,19 @@ pnpm install
 
 3. **Set up environment variables**
 
-Create a `.env.local` file in the root directory:
+Create a `.env.local` file in the root directory (optional - form works without it):
 
 ```env
+# Optional: Configure EmailJS for direct email sending
+# Without these, the form will use mailto: fallback
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
-To get EmailJS credentials:
+**Note**: The contact form works perfectly without EmailJS! It will use your default email client as a fallback. See [EMAILJS-SETUP.md](EMAILJS-SETUP.md) for optional EmailJS configuration.
+
+To get EmailJS credentials (optional):
 - Sign up at [EmailJS](https://www.emailjs.com/)
 - Create an email service
 - Create an email template

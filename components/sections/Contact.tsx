@@ -59,19 +59,42 @@ export default function Contact() {
     e.preventDefault();
     setStatus({ type: "loading", message: "Sending message..." });
 
+    // Check if EmailJS is configured
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      // Fallback to mailto if EmailJS is not configured
+      const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      );
+      window.location.href = `mailto:tech.sisayeed@gmail.com?subject=${subject}&body=${body}`;
+      
+      setStatus({
+        type: "success",
+        message: "Opening your email client... Please send the message from there.",
+      });
+      
+      setTimeout(() => {
+        setStatus({ type: "idle", message: "" });
+      }, 3000);
+      return;
+    }
+
     try {
       // EmailJS configuration
-      // Make sure to set up your EmailJS account and add credentials to .env.local
       await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
+        serviceId,
+        templateId,
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
           to_name: "Sayeed",
         },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ""
+        publicKey
       );
 
       setStatus({
@@ -80,10 +103,22 @@ export default function Contact() {
       });
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
+      console.error("EmailJS Error:", error);
+      
+      // Fallback to mailto on error
+      const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      );
+      
       setStatus({
         type: "error",
-        message: "Failed to send message. Please try again or email me directly.",
+        message: "Email service temporarily unavailable. Opening your email client as backup...",
       });
+      
+      setTimeout(() => {
+        window.location.href = `mailto:tech.sisayeed@gmail.com?subject=${subject}&body=${body}`;
+      }, 2000);
     }
 
     setTimeout(() => {
