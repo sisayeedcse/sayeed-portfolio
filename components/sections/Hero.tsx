@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { FiArrowRight, FiMail } from "react-icons/fi";
 import { TypeAnimation } from "react-type-animation";
@@ -12,19 +12,50 @@ import {
   SiPython,
   SiTypescript,
   SiTailwindcss,
+  SiNodedotjs,
+  SiMongodb,
+  SiGit,
+  SiDocker,
+  SiNextdotjs,
+  SiPhp,
+  SiMysql,
+  SiGraphql,
+  SiFirebase,
+  SiRedux,
 } from "react-icons/si";
 
-const techIcons = [
-  { Icon: SiReact, color: "#61DAFB", delay: 0 },
-  { Icon: SiWordpress, color: "#21759B", delay: 0.2 },
-  { Icon: SiJavascript, color: "#F7DF1E", delay: 0.4 },
-  { Icon: SiPython, color: "#3776AB", delay: 0.6 },
-  { Icon: SiTypescript, color: "#3178C6", delay: 0.8 },
-  { Icon: SiTailwindcss, color: "#06B6D4", delay: 1 },
+// Inner orbit - faster rotation
+const innerOrbit = [
+  { Icon: SiReact, color: "#61DAFB", name: "React" },
+  { Icon: SiNextdotjs, color: "#ffffff", name: "Next.js" },
+  { Icon: SiTypescript, color: "#3178C6", name: "TypeScript" },
+  { Icon: SiTailwindcss, color: "#06B6D4", name: "Tailwind" },
+];
+
+// Middle orbit - medium rotation
+const middleOrbit = [
+  { Icon: SiNodedotjs, color: "#339933", name: "Node.js" },
+  { Icon: SiPython, color: "#3776AB", name: "Python" },
+  { Icon: SiJavascript, color: "#F7DF1E", name: "JavaScript" },
+  { Icon: SiPhp, color: "#777BB4", name: "PHP" },
+  { Icon: SiWordpress, color: "#21759B", name: "WordPress" },
+];
+
+// Outer orbit - slower rotation
+const outerOrbit = [
+  { Icon: SiMongodb, color: "#47A248", name: "MongoDB" },
+  { Icon: SiMysql, color: "#4479A1", name: "MySQL" },
+  { Icon: SiGit, color: "#F05032", name: "Git" },
+  { Icon: SiDocker, color: "#2496ED", name: "Docker" },
+  { Icon: SiGraphql, color: "#E10098", name: "GraphQL" },
+  { Icon: SiFirebase, color: "#FFCA28", name: "Firebase" },
+  { Icon: SiRedux, color: "#764ABC", name: "Redux" },
 ];
 
 export default function Hero() {
   const blobRef = useRef<HTMLDivElement>(null);
+  const [hoveredIcon, setHoveredIcon] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     if (!blobRef.current) return;
@@ -38,6 +69,14 @@ export default function Hero() {
       ease: "power1.inOut",
     });
   }, []);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left - rect.width / 2,
+      y: e.clientY - rect.top - rect.height / 2,
+    });
+  };
 
   const handleScroll = (href: string) => {
     const element = document.querySelector(href);
@@ -179,61 +218,383 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Floating Tech Icons */}
+          {/* Right Side - Orbital Tech Icons */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative hidden lg:flex items-center justify-center h-[600px]"
+            className="relative hidden lg:flex items-center justify-center h-[500px]"
+            onMouseMove={handleMouseMove}
           >
-            <div className="relative w-full h-full">
-              {techIcons.map(({ Icon, color, delay }, index) => {
-                const angle = (index * 360) / techIcons.length;
-                const radius = 200;
-                const x = Math.cos((angle * Math.PI) / 180) * radius;
-                const y = Math.sin((angle * Math.PI) / 180) * radius;
+            <div className="relative w-[450px] h-[450px]">
+              {/* Orbit Rings */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.1 }}
+                transition={{ delay: 0.5 }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[160px] border border-primary-400/20 rounded-full"
+              />
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.1 }}
+                transition={{ delay: 0.7 }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] h-[260px] border border-purple-400/20 rounded-full"
+              />
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.1 }}
+                transition={{ delay: 0.9 }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] border border-pink-400/20 rounded-full"
+              />
+
+              {/* Inner Orbit Icons - Fast rotation */}
+              {innerOrbit.map(({ Icon, color, name }, index) => {
+                const angle = (index * 360) / innerOrbit.length;
 
                 return (
                   <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: delay, duration: 0.5 }}
-                    className="absolute top-1/2 left-1/2"
-                    style={{
-                      transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                    key={`inner-${index}`}
+                    initial={{ opacity: 0, scale: 0, rotate: angle }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                      rotate: angle + 360,
                     }}
+                    transition={{
+                      opacity: { delay: 0.2 + index * 0.1, duration: 0.5 },
+                      scale: { delay: 0.2 + index * 0.1, duration: 0.5 },
+                      rotate: {
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "linear",
+                      },
+                    }}
+                    className="absolute top-1/2 left-1/2 w-[160px] h-[160px] -translate-x-1/2 -translate-y-1/2"
                   >
                     <motion.div
+                      initial={{ rotate: -angle }}
                       animate={{
-                        y: [0, -20, 0],
+                        scale: hoveredIcon === index ? 1.3 : 1,
+                        y: [0, -10, 0],
+                        rotate: -angle - 360,
                       }}
                       transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        delay: delay,
+                        scale: { duration: 0.3 },
+                        y: {
+                          duration: 2 + index * 0.3,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        },
+                        rotate: {
+                          duration: 20,
+                          repeat: Infinity,
+                          ease: "linear",
+                        },
                       }}
-                      className="glass-card p-6 rounded-2xl hover:scale-110 transition-transform duration-300 cursor-pointer group"
-                      whileHover={{ boxShadow: `0 0 30px ${color}40` }}
+                      onHoverStart={() => setHoveredIcon(index)}
+                      onHoverEnd={() => setHoveredIcon(null)}
+                      className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 glass-card p-2.5 rounded-xl hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                      style={{
+                        boxShadow:
+                          hoveredIcon === index
+                            ? `0 0 40px ${color}60, 0 0 80px ${color}30`
+                            : "none",
+                      }}
+                      whileHover={{ scale: 1.2 }}
                     >
-                      <Icon
-                        className="w-12 h-12 group-hover:scale-110 transition-transform duration-300"
-                        style={{ color }}
+                      <Icon className="w-6 h-6" style={{ color }} />
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        whileHover={{ opacity: 1, y: 0 }}
+                        className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold text-white bg-gray-900/90 px-2 py-1 rounded"
+                      >
+                        {name}
+                      </motion.div>
+                      {/* Glow pulse effect */}
+                      <motion.div
+                        animate={{
+                          scale: [1, 1.5, 1],
+                          opacity: [0.5, 0, 0.5],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: index * 0.2,
+                        }}
+                        className="absolute inset-0 rounded-xl"
+                        style={{
+                          background: `radial-gradient(circle, ${color}40 0%, transparent 70%)`,
+                        }}
                       />
                     </motion.div>
                   </motion.div>
                 );
               })}
 
-              {/* Center Circle */}
+              {/* Middle Orbit Icons - Medium rotation */}
+              {middleOrbit.map(({ Icon, color, name }, index) => {
+                const angle = (index * 360) / middleOrbit.length;
+
+                return (
+                  <motion.div
+                    key={`middle-${index}`}
+                    initial={{ opacity: 0, scale: 0, rotate: angle }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                      rotate: angle - 360,
+                    }}
+                    transition={{
+                      opacity: { delay: 0.4 + index * 0.1, duration: 0.5 },
+                      scale: { delay: 0.4 + index * 0.1, duration: 0.5 },
+                      rotate: {
+                        duration: 30,
+                        repeat: Infinity,
+                        ease: "linear",
+                      },
+                    }}
+                    className="absolute top-1/2 left-1/2 w-[260px] h-[260px] -translate-x-1/2 -translate-y-1/2"
+                  >
+                    <motion.div
+                      initial={{ rotate: -angle }}
+                      animate={{
+                        scale: hoveredIcon === index + 100 ? 1.3 : 1,
+                        y: [0, -15, 0],
+                        rotate: -angle + 360,
+                      }}
+                      transition={{
+                        scale: { duration: 0.3 },
+                        y: {
+                          duration: 2.5 + index * 0.3,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        },
+                        rotate: {
+                          duration: 30,
+                          repeat: Infinity,
+                          ease: "linear",
+                        },
+                      }}
+                      onHoverStart={() => setHoveredIcon(index + 100)}
+                      onHoverEnd={() => setHoveredIcon(null)}
+                      className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 glass-card p-2.5 rounded-xl hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                      style={{
+                        boxShadow:
+                          hoveredIcon === index + 100
+                            ? `0 0 40px ${color}60, 0 0 80px ${color}30`
+                            : "none",
+                      }}
+                      whileHover={{ scale: 1.2 }}
+                    >
+                      <Icon className="w-6 h-6" style={{ color }} />
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        whileHover={{ opacity: 1, y: 0 }}
+                        className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold text-white bg-gray-900/90 px-2 py-1 rounded"
+                      >
+                        {name}
+                      </motion.div>
+                      {/* Glow pulse effect */}
+                      <motion.div
+                        animate={{
+                          scale: [1, 1.5, 1],
+                          opacity: [0.5, 0, 0.5],
+                        }}
+                        transition={{
+                          duration: 2.5,
+                          repeat: Infinity,
+                          delay: index * 0.2,
+                        }}
+                        className="absolute inset-0 rounded-xl"
+                        style={{
+                          background: `radial-gradient(circle, ${color}40 0%, transparent 70%)`,
+                        }}
+                      />
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+
+              {/* Outer Orbit Icons - Slow rotation */}
+              {outerOrbit.map(({ Icon, color, name }, index) => {
+                const angle = (index * 360) / outerOrbit.length;
+
+                return (
+                  <motion.div
+                    key={`outer-${index}`}
+                    initial={{ opacity: 0, scale: 0, rotate: angle }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                      rotate: angle + 360,
+                    }}
+                    transition={{
+                      opacity: { delay: 0.6 + index * 0.1, duration: 0.5 },
+                      scale: { delay: 0.6 + index * 0.1, duration: 0.5 },
+                      rotate: {
+                        duration: 40,
+                        repeat: Infinity,
+                        ease: "linear",
+                      },
+                    }}
+                    className="absolute top-1/2 left-1/2 w-[360px] h-[360px] -translate-x-1/2 -translate-y-1/2"
+                  >
+                    <motion.div
+                      initial={{ rotate: -angle }}
+                      animate={{
+                        scale: hoveredIcon === index + 200 ? 1.3 : 1,
+                        y: [0, -20, 0],
+                        rotate: -angle - 360,
+                      }}
+                      transition={{
+                        scale: { duration: 0.3 },
+                        y: {
+                          duration: 3 + index * 0.3,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        },
+                        rotate: {
+                          duration: 40,
+                          repeat: Infinity,
+                          ease: "linear",
+                        },
+                      }}
+                      onHoverStart={() => setHoveredIcon(index + 200)}
+                      onHoverEnd={() => setHoveredIcon(null)}
+                      className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 glass-card p-2.5 rounded-xl hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                      style={{
+                        boxShadow:
+                          hoveredIcon === index + 200
+                            ? `0 0 40px ${color}60, 0 0 80px ${color}30`
+                            : "none",
+                      }}
+                      whileHover={{ scale: 1.2 }}
+                    >
+                      <Icon className="w-6 h-6" style={{ color }} />
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        whileHover={{ opacity: 1, y: 0 }}
+                        className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold text-white bg-gray-900/90 px-2 py-1 rounded"
+                      >
+                        {name}
+                      </motion.div>
+                      {/* Glow pulse effect */}
+                      <motion.div
+                        animate={{
+                          scale: [1, 1.5, 1],
+                          opacity: [0.5, 0, 0.5],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          delay: index * 0.2,
+                        }}
+                        className="absolute inset-0 rounded-xl"
+                        style={{
+                          background: `radial-gradient(circle, ${color}40 0%, transparent 70%)`,
+                        }}
+                      />
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+
+              {/* Center Circle with Pulse */}
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-gradient-to-r from-primary-600 to-purple-600 rounded-full flex items-center justify-center shadow-2xl"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
               >
-                <span className="text-white text-4xl font-bold">{ "< >" }</span>
+                <motion.div
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    rotate: [0, 180, 360],
+                  }}
+                  transition={{
+                    scale: {
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    },
+                    rotate: {
+                      duration: 10,
+                      repeat: Infinity,
+                      ease: "linear",
+                    },
+                  }}
+                  className="w-28 h-28 bg-gradient-to-r from-primary-600 via-purple-600 to-pink-600 rounded-full flex items-center justify-center shadow-2xl relative"
+                >
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.5, 1],
+                      opacity: [0.5, 0, 0.5],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                    }}
+                    className="absolute inset-0 bg-gradient-to-r from-primary-500 via-purple-500 to-pink-500 rounded-full blur-xl"
+                  />
+                  <span className="text-white text-2xl font-bold relative z-10">
+                    {"< >"}
+                  </span>
+                </motion.div>
               </motion.div>
+
+              {/* Connection Lines Effect */}
+              <svg
+                className="absolute inset-0 pointer-events-none"
+                style={{ opacity: 0.1 }}
+              >
+                <motion.circle
+                  cx="50%"
+                  cy="50%"
+                  r="80"
+                  stroke="url(#gradient1)"
+                  strokeWidth="1"
+                  fill="none"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 2, delay: 1 }}
+                />
+                <motion.circle
+                  cx="50%"
+                  cy="50%"
+                  r="130"
+                  stroke="url(#gradient2)"
+                  strokeWidth="1"
+                  fill="none"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 2, delay: 1.2 }}
+                />
+                <motion.circle
+                  cx="50%"
+                  cy="50%"
+                  r="180"
+                  stroke="url(#gradient3)"
+                  strokeWidth="1"
+                  fill="none"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 2, delay: 1.4 }}
+                />
+                <defs>
+                  <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#3b82f6" />
+                    <stop offset="100%" stopColor="#8b5cf6" />
+                  </linearGradient>
+                  <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#8b5cf6" />
+                    <stop offset="100%" stopColor="#ec4899" />
+                  </linearGradient>
+                  <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#ec4899" />
+                    <stop offset="100%" stopColor="#3b82f6" />
+                  </linearGradient>
+                </defs>
+              </svg>
             </div>
           </motion.div>
         </div>
